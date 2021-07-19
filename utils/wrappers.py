@@ -19,14 +19,15 @@ def check_file_and_screen_are_the_same_resolution(func):
     screen_resolution = load_config_value("screen_resolution")
 
     # x, y = screen_resolution.split("/")
-    def inner(filename):
+    def inner(*args, **kwargs):
+        filename = args[1]
         if filename.find(screen_resolution) != -1:
-            return func(filename)
+            return func(*args, **kwargs)
         else:
             img_resolution = re.search("\d{4}_\d{4}", filename).group()
             raise AssertionError("图片分辨率{}与屏幕分辨率{}不一致，无法完成图片匹配！".format(
                 img_resolution, screen_resolution
-            )
+                )
             )
 
     return inner
@@ -35,15 +36,16 @@ def check_file_and_screen_are_the_same_resolution(func):
 def check_file_and_screen_are_the_same_scale(func):
     screen_scale = load_config_value("screen_scale")
 
-    def inner(filename):
+    def inner(*args, **kwargs):
+        filename = args[1]
         img_scale = re.search("\d{4}_\d{4}_(\d{3})", filename).group(1)
-        if screen_scale != img_scale:
-            return func(filename)
+        print(screen_scale, img_scale)
+        if screen_scale == img_scale:
+            return func(*args, **kwargs)
         else:
-
             raise AssertionError("图片缩放{}与屏幕缩放{}不一致，无法完成图片匹配！".format(
                 img_scale, screen_scale
-            )
+                )
             )
 
     return inner

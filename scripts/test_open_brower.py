@@ -70,5 +70,5 @@ def test_search_in_baidu():
 
 if __name__ == "__main__":
     # test_brower_can_open()
-    test_login_ifly_site()
-    # test_search_in_baidu()
+    # test_login_ifly_site()
+    test_search_in_baidu()

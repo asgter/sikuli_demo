@@ -26,7 +26,7 @@ def test_sikuli_able_to_click_exactly_in_100_scaling():
 
 
 def test_sikuli_able_to_click_exactly_in_150_scaling():
-    with EnvInitializer():
+    with EnvInitializer() as env:
         print("start script!")
         Pattern = JClass("org.sikuli.script.Pattern")
         Screen = JClass("org.sikuli.script.Screen")
@@ -50,5 +50,5 @@ def test_sikuli_able_to_click_exactly_in_150_scaling():
 
 
 if __name__ == "__main__":
-    test_sikuli_able_to_click_exactly_in_100_scaling()
-    # test_sikuli_able_to_click_exactly_in_150_scaling()
+    # test_sikuli_able_to_click_exactly_in_100_scaling()
+    test_sikuli_able_to_click_exactly_in_150_scaling()
